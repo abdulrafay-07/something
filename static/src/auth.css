@@ -1,0 +1,9 @@
+/* Tabs */
+.active-tab {
+  background-color: color-mix(in oklab, var(--color-amber-900) 5%, transparent);
+}
+
+/* Form */
+.active-form {
+  display: block;
+}

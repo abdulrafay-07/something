@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="src/auth.css">
+
+  <title>Create Account or Log In</title>
+</head>
+<body>
+  <main class="h-full flex items-center justify-center bg-amber-50">
+    <div class="flex flex-col shadow-sm min-w-[456px] px-4 py-5 bg-white/50 rounded-sm">
+      <!-- Tabs -->
+      <div class="w-full grid grid-cols-2 text-center text-lg font-semibold text-amber-900 border border-amber-900/20 rounded-md">
+        <button id="login-tab" class="active-tab rounded-md py-1 cursor-pointer duration-200 ease-in">
+          Login
+        </button>
+        <button id="signup-tab" class="rounded-md py-1 cursor-pointer duration-200 ease-in">
+          Sign up
+        </button>
+      </div>
+
+      <!-- Forms -->
+      <div>
+        <!-- Login -->
+        <form id="login-form" class="active-form flex flex-col space-y-4 mt-4">
+          <div class="flex flex-col gap-y-1">
+            <label for="login-email" class="text-amber-900">Email</label>
+            <input
+              id="login-email"
+              name="login-email"
+              type="email"
+              placeholder="tyler@fightclub.com"
+              class="text-sm p-2 focus:outline-none rounded-sm focus:ring-1 focus:ring-amber-900/80"
+              required
+            />
+          </div>
+          <div class="flex flex-col gap-y-1">
+            <label for="login-password" class="text-amber-900">Password</label>
+            <input
+              id="login-password"
+              name="login-password"
+              type="password"
+              placeholder="************"
+              min="6"
+              class="text-sm p-2 focus:outline-none rounded-sm focus:ring-1 focus:ring-amber-900/80"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-amber-900 text-white font-semibold py-2 rounded-md cursor-pointer"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <!-- Signup -->
+        <form id="signup-form" class="flex-col space-y-4 mt-4 hidden">
+          <div class="flex flex-col gap-y-1">
+            <label for="name" class="text-amber-900">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              minlength="3"
+              maxlength="20"
+              placeholder="Tyler Durden"
+              class="text-sm p-2 focus:outline-none rounded-sm focus:ring-1 focus:ring-amber-900/80"
+              required
+            />
+          </div>
+          <div class="flex flex-col gap-y-1">
+            <label for="signup-email" class="text-amber-900">Email</label>
+            <input
+              id="signup-email"
+              name="signup-email"
+              type="email"
+              placeholder="tyler@fightclub.com"
+              class="text-sm p-2 focus:outline-none rounded-sm focus:ring-1 focus:ring-amber-900/80"
+              required
+            />
+          </div>
+          <div class="flex flex-col gap-y-1">
+            <label for="signup-password" class="text-amber-900">Password</label>
+            <input
+              id="signup-password"
+              name="signup-password"
+              type="password"
+              placeholder="************"
+              min="6"
+              class="text-sm p-2 focus:outline-none rounded-sm focus:ring-1 focus:ring-amber-900/80"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-amber-900 text-white font-semibold py-2 rounded-md cursor-pointer"
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="src/auth.ts"></script>
+</body>
+</html>
