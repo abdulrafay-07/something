@@ -44,8 +44,13 @@ loginForm.addEventListener("submit", async (event) => {
 
   const email = (document.getElementById("login-email") as HTMLInputElement).value;
   const password = (document.getElementById("login-password") as HTMLInputElement).value;
+  const loginBtn = document.getElementById("signin-btn") as HTMLButtonElement;
+
+  loginBtn.disabled = true;
 
   await login(email, password);
+
+  loginBtn.disabled = false;
 
   window.location.href = "/";
 })
@@ -56,8 +61,13 @@ signupForm.addEventListener("submit", async (event) => {
   const name = (document.getElementById("name") as HTMLInputElement).value;
   const email = (document.getElementById("signup-email") as HTMLInputElement).value;
   const password = (document.getElementById("signup-password") as HTMLInputElement).value;
+  const signupBtn = document.getElementById("signup-btn") as HTMLButtonElement;
+
+  signupBtn.disabled = true;
 
   await signup(name, email, password);
+
+  signupBtn.disabled = false;
 
   window.location.href = "/";
 })

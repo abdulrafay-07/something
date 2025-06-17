@@ -41,7 +41,7 @@ func SignUpHandler(db *gorm.DB, c *gin.Context) {
 	if err != nil {
 		log.Printf("services.SignUpUser Error: %v", err)
 		if err == gorm.ErrRegistered {
-			c.IndentedJSON(http.StatusInternalServerError, types.ErrorResponse{
+			c.IndentedJSON(http.StatusOK, types.ErrorResponse{
 				Success: false,
 				Message: "User already exists",
 			})

@@ -1,5 +1,7 @@
 package types
 
+import "auth/db/models"
+
 // Common types
 
 type ErrorResponse struct {
@@ -30,4 +32,13 @@ type SignUpStruct struct {
 type SignInStruct struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
+}
+
+type CreateThought struct {
+	Thought    string            `json:"thought"`
+	Visibility models.Visibility `json:"visibility"`
+}
+
+type UpdateThought struct {
+	Visibility models.Visibility `json:"visibility"`
 }

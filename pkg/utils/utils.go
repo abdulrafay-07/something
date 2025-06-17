@@ -64,3 +64,13 @@ func CreateOrFindSession(c *gin.Context, db *gorm.DB, userId uint) error {
 
 	return err
 }
+
+func GetUserIDFromSessionID(db *gorm.DB, sessionID string) (uint, error) {
+	var session models.Session
+
+	if err := db.First(&session, "id = ? AND expires_at > NOW()", sessionID).Error; err != nil {
+		return 0, err
+	}
+
+	return session.UserID, nil
+}

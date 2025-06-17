@@ -21,11 +21,24 @@ func SetRoutes(r *gin.Engine, db *gorm.DB) {
 		api.POST("/signin", func(c *gin.Context) {
 			routes.SignInHandler(db, c)
 		})
+		api.GET("/me", func(c *gin.Context) {
+			routes.MeHandler(db, c)
+		})
 		api.POST("/logout", middleware.AuthMiddleware(db), func(c *gin.Context) {
 			routes.LogoutHandler(db, c)
 		})
-		api.GET("/me", func(c *gin.Context) {
-			routes.MeHandler(db, c)
+
+		api.POST("/thought", middleware.AuthMiddleware(db), func(c *gin.Context) {
+			routes.CreateThoughtHandler(db, c)
+		})
+		api.GET("/thought", middleware.AuthMiddleware(db), func(c *gin.Context) {
+			routes.GetUserThoughtsHandler(db, c)
+		})
+		api.GET("/thoughts/public", middleware.AuthMiddleware(db), func(c *gin.Context) {
+			routes.GetPublicThoughtsHandler(db, c)
+		})
+		api.PATCH("/thought/:id", middleware.AuthMiddleware(db), func(c *gin.Context) {
+			routes.UpdateThoughtHandler(db, c)
 		})
 	}
 }
@@ -34,7 +47,7 @@ func main() {
 	database := db.ConnectDB()
 
 	// Auto migrate the schemas
-	err := database.AutoMigrate(&models.User{}, &models.Session{})
+	err := database.AutoMigrate(&models.User{}, &models.Session{}, &models.Thought{})
 	if err != nil {
 		log.Fatal("Migration failed:", err)
 	}

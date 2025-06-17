@@ -33,3 +33,9 @@ export async function signup(name: string, email: string, password: string) {
 
   return response.data;
 }
+
+export async function logout() {
+  const response = await axios.post<ApiResponse>(`${baseUrl}/logout`, {}, { withCredentials: true });
+
+  return response.data;
+}
