@@ -1,6 +1,8 @@
 import { checkAuth, login, signup } from "./utils/auth";
 
-checkAuth().then((isLoggedIn) => {
+checkAuth().then((data) => {
+  const isLoggedIn = data.success;
+
   if (isLoggedIn && window.location.pathname == "/auth.html") {
     window.location.href = "/";
   }

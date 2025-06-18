@@ -13,3 +13,15 @@ export async function getUserThoughts() {
     return response.data.data;
   }
 }
+
+export async function updateVisibility(id: string, visibility: "public" | "private") {
+  const response = await axios.patch<ApiResponse>(`${baseUrl}/thought/${id}`, {
+    visibility,
+  }, {
+    withCredentials: true,
+  });
+
+  if (response.data.success) {
+    return response.data
+  }
+}

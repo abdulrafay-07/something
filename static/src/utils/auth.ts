@@ -8,9 +8,7 @@ export async function checkAuth() {
     withCredentials: true,
   });
 
-  if (!response.data.success) return false;
-
-  return response.data.success;
+  return response.data;
 }
 
 export async function login(email: string, password: string) {

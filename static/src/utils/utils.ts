@@ -26,3 +26,7 @@ export function getRandomFlower() {
 
   return `flower${num}`;
 }
+
+export function changeVisibility(text: "public" | "private") {
+  return text === "private" ? "public" : "private";
+}
