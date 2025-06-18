@@ -8,17 +8,21 @@
   <title>Vanilla + Go</title>
 </head>
 <body class="flex">
-  <aside class="flex flex-col h-full w-56 border-r bg-amber-50 border-amber-900/10 p-2">
-    Hello
+  <main id="main-container" class="min-w-[2000px] relative overflow-y-hidden">
+    <div class="container-background"></div>
+    <div id="flower-popup" class="fixed top-[38%] max-w-[250px] bg-amber-800/90 text-amber-50 p-2.5 rounded-xs hidden z-[2]"></div>
+
+    <!-- Logout -->
     <button
       id="logout-btn"
-      class="mt-auto w-full bg-amber-900 text-white font-medium py-1.5 rounded-md cursor-pointer"
+      class="bg-button absolute top-5 right-28 flex justify-center items-center cursor-pointer rounded-xl"
     >
-      Logout
+      <p
+        class="text-xl font-semibold italic text-amber-100 absolute top-[18px] cursor-pointer"
+      >
+        Logout
+      </p>
     </button>
-  </aside>
-  <main class="flex-1 py-2 pl-4">
-    a
   </main>
   <script type="module" src="src/index.ts"></script>
 </body>

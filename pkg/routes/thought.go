@@ -98,11 +98,23 @@ func GetUserThoughtsHandler(db *gorm.DB, c *gin.Context) {
 		return
 	}
 
+	// Convert thoughts to JSON-friendly format
+	var respThoughts []map[string]interface{}
+	for _, t := range thoughts {
+		respThoughts = append(respThoughts, map[string]interface{}{
+			"id":         t.ID,
+			"userId":     t.UserID,
+			"thought":    t.Thought,
+			"visibility": t.Visibility,
+			"createdAt":  t.CreatedAt,
+		})
+	}
+
 	resp := types.OKResponse{
 		Success: true,
 		Message: "Records found",
 		Data: map[string]interface{}{
-			"thoughts": thoughts,
+			"thoughts": respThoughts,
 		},
 	}
 
