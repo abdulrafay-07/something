@@ -25,3 +25,16 @@ export async function updateVisibility(id: string, visibility: "public" | "priva
     return response.data
   }
 }
+
+export async function createThought(thought: string, visibility: "public" | "private") {
+  const response = await axios.post<ApiResponse>(`${baseUrl}/thought`, {
+    thought,
+    visibility,
+  }, {
+    withCredentials: true,
+  });
+
+  if (response.data.success) {
+    return response.data;
+  }
+}

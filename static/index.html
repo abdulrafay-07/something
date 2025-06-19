@@ -8,22 +8,97 @@
   <title>Vanilla + Go</title>
 </head>
 <body class="flex">
-  <main id="main-container" class="min-w-[2000px] relative overflow-y-hidden">
-    <div class="container-background"></div>
+  <main id="main-container" class="w-full relative overflow-y-hidden">
+    <div class="container-background min-w-[2500px] max-w-[100000px]"></div>
     <div id="flower-popup" class="fixed top-[38%] min-w-[180px] max-w-[250px] bg-amber-50 text-amber-800 border border-amber-900 p-2 rounded-xs hidden z-[2] font-medium flex-col"></div>
 
     <!-- Greet -->
-    <h1 id="greet" class="game-font absolute top-5 left-1/2 -translate-x-1/2 text-2xl italic font-medium text-amber-800"></h1>
-    
-    </h1>
+    <h1 id="greet" class="game-font fixed top-5 left-1/2 -translate-x-1/2 text-2xl italic font-medium text-amber-800"></h1></h1>
+
+    <!-- Create Thought -->
+    <button
+      id="create-btn"
+      class="bg-button fixed top-5 left-5 flex justify-center items-center cursor-pointer rounded-xl w-[150px] h-[70px]"
+    >
+      <p
+        class="font-semibold italic text-amber-100 absolute top-2.5 cursor-pointer game-font"
+      >
+        Add a thought
+      </p>
+    </button>
+    <!-- Create Dialog -->
+    <dialog
+      id="create-popup"
+      class="hidden flex-col gap-y-4 absolute top-1/3 left-1/2 -translate-x-1/2 z-10 bg-amber-50 text-amber-800 border border-amber-900 p-2 rounded-xs max-w-[456px] w-full"
+    >
+      <div>
+        <p class="game-font text-sm">Add a new thought</p>
+        <hr />
+      </div>
+      <form id="create-form" class="flex flex-col space-y-4">
+        <div class="flex flex-col gap-y-1">
+          <label
+            for="thought"
+            class="text-amber-900"
+          >
+            Thought
+          </label>
+          <input
+            id="thought"
+            name="thought"
+            type="text"
+            placeholder="i can't handle change"
+            min="5"
+            max="255"
+            class="text-sm p-2 focus:outline-none border rounded-xs placeholder:text-amber-800/70"
+            required
+          />
+        </div>
+        <div class="flex flex-col gap-y-1">
+          <label
+            for="visibility"
+            class="text-amber-900"
+          >
+            Visibility
+          </label>
+          <select
+            id="visibility"
+            name="visibility"
+            class="text-sm p-2 focus:outline-none border rounded-xs placeholder:text-amber-800/70"
+          >
+            <option value="public" selected>Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+        <div class="flex items-end justify-between mt-4">
+          <button
+            id="close-dialog"
+            type="button"
+            class="rounded-md px-8 py-2 border border-amber-800 text-amber-800 font-semibold cursor-pointer hover:bg-amber-800 hover:text-amber-100 duration-150 transition"
+          >
+            Close
+          </button>
+          <button
+            id="submit-dialog"
+            class="bg-button flex justify-center items-center cursor-pointer rounded-xl w-[120px] h-[55px]"
+          >
+            <p
+              class="italic text-amber-100 cursor-pointer game-font text-sm"
+            >
+              Add
+            </p>
+          </button>
+        </div>
+      </form>
+    </dialog>
 
     <!-- Logout --> 
     <button
       id="logout-btn"
-      class="bg-button absolute top-5 right-28 flex justify-center items-center cursor-pointer rounded-xl"
+      class="bg-button top-5 right-5 fixed flex justify-center items-center cursor-pointer rounded-xl w-[150px] h-[70px]"
     >
       <p
-        class="text-xl font-semibold italic text-amber-100 absolute top-[18px] cursor-pointer"
+        class="font-semibold italic text-amber-100 absolute top-[22px] cursor-pointer game-font"
       >
         Logout
       </p>

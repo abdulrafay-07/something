@@ -2,7 +2,7 @@ import type { FlowerData } from "./types";
 
 import { getDateText, getRandomFlower, changeVisibility } from "./utils/utils";
 import { checkAuth, logout } from "./utils/auth";
-import { getUserThoughts, updateVisibility } from "./utils/thought";
+import { createThought, getUserThoughts, updateVisibility } from "./utils/thought";
 
 let initLeft = 200;
 
@@ -62,8 +62,9 @@ getUserThoughts().then((data) => {
       flowerPopup.textContent = flower.thought;
       flowerPopup.style.display = "flex";
       flowerPopup.style.textTransform = "lowercase";
-      flowerPopup.style.left = (parseInt(el.style.left, 10) + 140) + "px";
-      
+      const rect = el.getBoundingClientRect();
+      flowerPopup.style.left = `${rect.left + 140}px`;
+
       const hrEl = document.createElement("hr");
       hrEl.style.marginTop = "4px";
       flowerPopup.appendChild(hrEl);
@@ -94,7 +95,7 @@ getUserThoughts().then((data) => {
       divEl.appendChild(visibilityEl);
     });
 
-    container.appendChild(el);
+    containerBackground.appendChild(el);
 
     const dateEl = document.createElement("p");
     dateEl.className = "date";
@@ -104,7 +105,7 @@ getUserThoughts().then((data) => {
 
     initLeft += 600;
 
-    container.appendChild(dateEl);
+    containerBackground.appendChild(dateEl);
   });
 });
 
@@ -124,6 +125,36 @@ document.addEventListener("click", () => {
     const date = allDates[i] as HTMLParagraphElement;
     date.style.opacity = "100%";
   }
+});
+
+const createBtn = document.getElementById("create-btn") as HTMLButtonElement;
+const createPopup = document.getElementById("create-popup") as HTMLDialogElement;
+createBtn.addEventListener("click", async () => {
+  // Open the popup
+  createPopup.style.display = "flex";
+});
+
+const closeDialog = document.getElementById("close-dialog") as HTMLButtonElement;
+closeDialog.addEventListener("click", () => {
+  // Close the popup
+  createPopup.style.display = "none";
+});
+
+const submitDialog = document.getElementById("submit-dialog") as HTMLButtonElement;
+submitDialog.addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  // Get the values
+  const thought = (document.getElementById("thought") as HTMLInputElement).value;
+  const visibility = (document.getElementById("visibility") as HTMLSelectElement).value;
+
+  if (visibility != "public" && visibility != "private") return;
+
+  await createThought(thought, visibility);
+
+  // Close the popup, reload the site
+  createPopup.style.display = "none";
+  window.location.reload();
 });
 
 const logoutBtn = document.getElementById("logout-btn") as HTMLButtonElement;
